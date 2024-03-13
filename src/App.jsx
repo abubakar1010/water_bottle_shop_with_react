@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Display from './components/Display/Display'
+import {addToLS} from './components/utilities/LocalStorage'
+import { getStoredCart } from './components/utilities/LocalStorage'
 
 function App() {
 
@@ -23,8 +25,26 @@ function App() {
 
     const updatedCart = [...cart,data]
     setCart(updatedCart)
+    addToLS(data.id)
   }
-  console.log(cart);
+  useEffect( () => {
+
+    const savedCart = []
+    if (getData.length) {
+      const storedCard = getStoredCart()
+      console.log(storedCard);
+      for (let id of storedCard ){
+        console.log(id);
+        if (getData) {
+          
+          savedCart.push(id)
+        }
+      }
+      setCart(savedCart)
+    }
+
+  },[getData])
+
   return (
     <>
       <div className=' flex flex-col items-center justify-center gap-10'>
