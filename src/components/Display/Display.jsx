@@ -1,7 +1,6 @@
 
 
-const Display = ({data}) => {
-    console.log(data);
+const Display = ({data, handleCart}) => {
     const {name,img,price} = data
     return (
         <>
@@ -10,7 +9,7 @@ const Display = ({data}) => {
         <h2 className=" text-xl font-bold">Bottle: {name}</h2>
         <img src={img} alt="" className=" w-[250px] rounded-lg" />
         <p className=" font-medium text-xl">Price: ${price}</p>
-        <button className="bg-teal-500
+        <button onClick={ () => handleCart(data,name,price)} className="bg-teal-500
          text-white font-medium text-2xl py-2 px-4 rounded-2xl border-none outline-none">Purchase</button>
         </div>
         </>
