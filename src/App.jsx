@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Display from './components/Display/Display'
-import {addToLS} from './components/utilities/LocalStorage'
+import {addToLS, removeFromLs} from './components/utilities/LocalStorage'
 import { getStoredCart } from './components/utilities/LocalStorage'
+import Cart from './components/Cart/Cart'
 
 function App() {
 
@@ -25,16 +26,16 @@ function App() {
 
     const updatedCart = [...cart,data]
     setCart(updatedCart)
-    addToLS(data.id)
+    addToLS(data)
   }
   useEffect( () => {
 
     const savedCart = []
     if (getData.length) {
       const storedCard = getStoredCart()
-      console.log(storedCard);
+      // console.log(storedCard);
       for (let id of storedCard ){
-        console.log(id);
+        // console.log(id);
         if (getData) {
           
           savedCart.push(id)
@@ -45,6 +46,15 @@ function App() {
 
   },[getData])
 
+  // remove item form ls and ui 
+
+  const handleRemoveItem = (id) => {
+
+    removeFromLs(id)
+    // console.log('id',id);
+
+  }
+
   return (
     <>
       <div className=' flex flex-col items-center justify-center gap-10'>
@@ -54,7 +64,7 @@ function App() {
       </div>
       <div className='space-y-6 mb-12'>
       <p className='text-2xl font-medium text-pink-700'>Your Cart:</p>
-      <p>Total Products: {cart.length} </p>
+      <Cart cart={cart} handleRemoveItem={handleRemoveItem}/>
       {/* <p>Name: {name} </p> */}
       {/* <p>Price: {price} </p> */}
       </div>
