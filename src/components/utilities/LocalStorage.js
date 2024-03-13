@@ -27,7 +27,7 @@ const removeFromLs = (id) => {
 
     const cart = getStoredCart()
 
-    console.log('cart before remove =>',cart);
+    // console.log('cart before remove =>',cart);
 
     const remaining = cart.filter( idx =>{
         // console.log("current id", idx);

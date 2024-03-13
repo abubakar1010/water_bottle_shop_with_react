@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 const Cart = ({cart,handleRemoveItem}) => {
     // console.log(cart);
+
     return (
        <>
         <div>

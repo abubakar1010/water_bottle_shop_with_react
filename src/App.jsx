@@ -5,6 +5,7 @@ import Display from './components/Display/Display'
 import {addToLS, removeFromLs} from './components/utilities/LocalStorage'
 import { getStoredCart } from './components/utilities/LocalStorage'
 import Cart from './components/Cart/Cart'
+import { element } from 'prop-types'
 
 function App() {
 
@@ -53,6 +54,17 @@ function App() {
     removeFromLs(id)
     // console.log('id',id);
 
+    let remainingCart = [];
+
+    cart.forEach( (id) => {
+      // console.log("current id", id.id);
+      //   console.log(" id", cart);
+        remainingCart = cart.filter( element => element.id != id.id)
+    } )
+
+    // console.log('remaining',remainingCart);
+
+    setCart(remainingCart)
   }
 
   return (
